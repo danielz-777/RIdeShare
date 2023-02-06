@@ -11,7 +11,19 @@ public class Station
     public Station()
     {
         location = (int)(Math.random() * 31);
-        
+        numPass = new ArrayList<Passenger>();
+    }
+
+    //return all Passengers in station
+    public ArrayList passIn()
+    {
+        return numPass;
+    }
+
+    //get station location
+    public int getLocation()
+    {
+        return location;
     }
 
     //adding Passenger to station
@@ -21,8 +33,23 @@ public class Station
     }
 
     //removing Passenger from station, can have a list be accessed by a car to determine best passenger to travel
-    public void removePass()
+    /**
+     * 
+     * @return the next Passenger going left or null if there is none
+     */
+    public Passenger nextLeftPass()
     {
-        //nothing for me, can change later
+        for(int i = 0; i < numPass.size(); i++)
+        {
+            Passenger p = numPass.get(i);
+            if(p.getDestination() < location)
+            {
+                numPass.remove(i);
+                return p;
+            }
+        }
+        return null;
     }
+
+    
 }
