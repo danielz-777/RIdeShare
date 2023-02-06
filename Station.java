@@ -8,14 +8,14 @@ public class Station
 
     private ArrayList<Passenger> numPass;
 
-    public Station()
+    public Station(int num)
     {
-        location = (int)(Math.random() * 31);
+        location = num;
         numPass = new ArrayList<Passenger>();
     }
 
     //return all Passengers in station
-    public ArrayList passIn()
+    public ArrayList getPass()
     {
         return numPass;
     }
