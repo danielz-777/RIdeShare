@@ -24,6 +24,11 @@ public class Passenger
         return location;
     }
 
+    public String toString()
+    {
+        return super.toString() + " Start : " + location + " Dest: " + destination;
+    }
+
     
 
 }
