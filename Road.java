@@ -1,36 +1,39 @@
 import java.util.*;
 public class Road 
 {
+    final int numStation;
+    final int numPass;
+    final int numCars;
     private Station[] stops;
+    private Car[] allCars;
+    private Passenger[] numPassengers;
         //method to put a road
     /**
      * Road, makes 5 new stops and then put some passengers on the road
      */
-    public Road()
+    public Road(int myStation, int numP, int numC)
     {
-        stops = new Station[5];
+        stops = new Station[myStation];
         for(int i = 0; i < stops.length; i++)
         {
             stops[i] = new Station(i);
         }
 
-        stops[0].addPass(new Passenger(0, 3));
-        stops[0].addPass(new Passenger(0, 24));
-        stops[0].addPass(new Passenger(0, 5));
-        stops[0].addPass(new Passenger(0, 9));
+        allCars = new Car[numC];
+        for(int i = 0; i < allCars.length; i++)
+        {
+            int start = (int)(Math.random() * myStation);
+            int stop = (int)(Math.random() * myStation);
+            allCars[i] = new Car(start, stop);
+        }
 
-        stops[1].addPass(new Passenger(1, 4));
-        stops[1].addPass(new Passenger(1, 2));
-
-        stops[2].addPass(new Passenger(2, 3));
-        stops[2].addPass(new Passenger(2, 14));
-
-        stops[3].addPass(new Passenger(3, 2));
-        stops[3].addPass(new Passenger(3, 7));
-
-        stops[4].addPass(new Passenger(4, 9));
-        stops[4].addPass(new Passenger(4, 12));
-        
+        numPassengers = new Passenger[numP];
+        for(int i = 0; i < numPassengers.length; i++)
+        {
+            int start = (int)(Math.random() * myStation);
+            int stop = (int)(Math.random() * myStation);
+            numPassengers[i] = new Passenger(start, stop);
+        }
     }
 
     public void getStops()
