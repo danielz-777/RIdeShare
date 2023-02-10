@@ -6,6 +6,7 @@ public class Car
     private int maxPass;
     private int location;
     private int destination;
+    private static int rev;
     //private boolean isLeft;
 
     public Car(int myLocation, int myDestination)
@@ -18,12 +19,27 @@ public class Car
         {
             isLeft = true;
         }*/
+        maxPass = 4;
     }
 
-    public void addPassenger(Passenger p)
+    public void addPassenger(Station s, int i)
     {
         
-        pass.add(p);
+        if(destination > location)
+        {
+            if(s.getPass(i).getDestination() < destination && s.getPass(i).getDestination() > location && maxPass < 4)
+            {
+                pass.add(s.getPass(i));
+            }
+        }
+        if(location > destination)
+        {
+            if(p.getDestination() > destination && p.getDestination() < location && maxPass < 4)
+            {
+                pass.add(p);
+            }
+        }
+        
     }
 
     public int getLocation()
@@ -33,25 +49,33 @@ public class Car
 
     public void move()
     {
-        for(int i = 0; i <= pass.size(); i++)
+        if(pass.size() == 0)
         {
-            if(destination > location)
+            if(location < destination)
             {
-                if(pass.get(i).getDestination() <= destination && pass.get(i).getDestination() >= location)
-                {
-                    location = pass.get(i).getDestination();
-                }
+                location++;
+                rev += pass.size();
             }
+            
 
             if(location > destination)
             {
-                if(pass.get(i).getDestination() >= destination && pass.get(i).getDestination() <= location)
-                {
-                    location = pass.get(i).getDestination();
-                }
+                location--;
+                rev += pass.size();
             }
-            
         }
+        
+        if(destination > location)
+        {  
+            location++;
+        }
+
+        if(location > destination)
+        {  
+            location--;
+        }
+            
+        
 
         
         

@@ -20,6 +20,13 @@ public class Station
         return numPass;
     }
 
+    public Passenger getPass(int i)
+    {
+        return numPass.get(i);
+    }
+
+    
+
     //get station location
     public int getLocation()
     {

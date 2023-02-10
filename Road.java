@@ -1,9 +1,7 @@
 import java.util.*;
 public class Road 
 {
-    final int numStation;
-    final int numPass;
-    final int numCars;
+    
     private Station[] stops;
     private Car[] allCars;
     private Passenger[] numPassengers;
@@ -32,16 +30,30 @@ public class Road
         {
             int start = (int)(Math.random() * myStation);
             int stop = (int)(Math.random() * myStation);
-            numPassengers[i] = new Passenger(start, stop);
+            Passenger p = new Passenger(start, stop);
+            stops[start].addPass(p);
+
         }
+
+        
     }
 
+
+    
     public void getStops()
     {
         for(int i = 0; i  < stops.length; i++)
         {
             System.out.println(stops[i].getPass());
             System.out.println("");
+        }
+    }
+
+    public void getCars()
+    {
+        for(int i = 0; i < stops.length; i++)
+        {
+            System.out.println(allCars[i].getLocation());
         }
     }
 
