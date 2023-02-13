@@ -34,9 +34,9 @@ public class Car
         }
         if(location > destination)
         {
-            if(p.getDestination() > destination && p.getDestination() < location && maxPass < 4)
+            if(s.getPass(i).getDestination() > destination && s.getPass(i).getDestination() < location && maxPass < 4)
             {
-                pass.add(p);
+                pass.add(s.getPass(i));
             }
         }
         
