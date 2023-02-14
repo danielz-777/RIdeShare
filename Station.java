@@ -20,6 +20,11 @@ public class Station
         return numPass;
     }
 
+    public void removePass(int i)
+    {
+        numPass.remove(i);
+    }
+
     public Passenger getPass(int i)
     {
         return numPass.get(i);

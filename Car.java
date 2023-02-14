@@ -7,6 +7,7 @@ public class Car
     private int location;
     private int destination;
     private static int rev;
+    
     //private boolean isLeft;
 
     public Car(int myLocation, int myDestination)
@@ -20,6 +21,7 @@ public class Car
             isLeft = true;
         }*/
         maxPass = 4;
+        
     }
 
     public void addPassenger(Station s, int i)
@@ -29,17 +31,28 @@ public class Car
         {
             if(s.getPass(i).getDestination() < destination && s.getPass(i).getDestination() > location && maxPass < 4)
             {
+                s.removePass(i);
                 pass.add(s.getPass(i));
+                //System.out.println(pass);
             }
         }
         if(location > destination)
         {
             if(s.getPass(i).getDestination() > destination && s.getPass(i).getDestination() < location && maxPass < 4)
             {
+                s.removePass(i);
                 pass.add(s.getPass(i));
+                //System.out.println(pass);
             }
         }
         
+        
+        
+    }
+
+    public int getPassSize()
+    {
+        return pass.size();
     }
 
     public int getLocation()
@@ -47,33 +60,28 @@ public class Car
         return location;
     }
 
+    public int getDest()
+    {
+        return destination;
+    }
     public void move()
     {
-        if(pass.size() == 0)
-        {
-            if(location < destination)
-            {
-                location++;
-                rev += pass.size();
-            }
-            
-
-            if(location > destination)
-            {
-                location--;
-                rev += pass.size();
-            }
-        }
+        
+       
         
         if(destination > location)
         {  
             location++;
+            rev += pass.size();
         }
 
         if(location > destination)
         {  
             location--;
+            rev += pass.size();
         }
+        
+        
             
         
 
@@ -81,16 +89,24 @@ public class Car
         
     }
 
-    public void dropOff()
+    public Passenger dropOff()
     {
         for(int i = 0; i < pass.size(); i++)
         {
             if(location == pass.get(i).getDestination())
             {
-                pass.remove(pass.get(i));
-                i--;
+                return pass.remove(i);
+                
+                
             }
         }
+        return null;
+        
+    }
+
+    public String toString()
+    {
+        return super.toString() + " current location: " + location + " Dest: " + destination + " size: " + pass.size();
     }
 
 }

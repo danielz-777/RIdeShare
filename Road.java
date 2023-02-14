@@ -31,6 +31,7 @@ public class Road
             int start = (int)(Math.random() * myStation);
             int stop = (int)(Math.random() * myStation);
             Passenger p = new Passenger(start, stop);
+            numPassengers[i] = p;
             stops[start].addPass(p);
 
         }
@@ -38,8 +39,53 @@ public class Road
         
     }
 
+    public void moveCar()
+    {
+        for(int i = 0; i < 10; i++ )
+        {
+            
+            for(int j = 0; j < stops[allCars[i].getLocation()].getPass().size(); j++ )
+            {
+                System.out.println(stops[allCars[i].getLocation()]);
+                System.out.println(stops[allCars[i].getLocation()].getPass());
+                allCars[i].addPassenger(stops[allCars[i].getLocation()], j);
+                System.out.println(allCars[i].getPassSize());
+            }
+            //allCars[i].addPassenger(stops[allCars[i].getLocation()], i);
+            
 
+            //method to add passenger into station, ignore null
+            for(int k = 0; k <= allCars[i].getPassSize(); k++ )
+            {
+                if(allCars[i].dropOff() != null)
+                {
+                    stops[allCars[i].getLocation()].addPass(allCars[i].dropOff());
+                }
+            }
+            allCars[i].move();
+
+            
+
+        }
+    }
+
+    public void getStation()
+    {
+        for(int i = 0; i < stops.length; i++)
+        {
+            System.out.println(stops[i].getPass());
+        }
+    }
     
+    public void getPassLoc()
+    {
+        for(int i =0; i < numPassengers.length; i++)
+        {
+            System.out.println(numPassengers[i].toString());
+            System.out.println("");
+        }
+    }
+
     public void getStops()
     {
         for(int i = 0; i  < stops.length; i++)
@@ -51,9 +97,9 @@ public class Road
 
     public void getCars()
     {
-        for(int i = 0; i < stops.length; i++)
+        for(int i = 0; i < allCars.length; i++)
         {
-            System.out.println(allCars[i].getLocation());
+            System.out.println(allCars[i].toString());
         }
     }
 
