@@ -24,9 +24,14 @@ public class Passenger
         return location;
     }
 
+    public void updateLoc(int i)
+    {
+        location = i;
+    }
+
     public String toString()
     {
-        return super.toString() + " Start : " + location + " Dest: " + destination;
+        return super.toString() + " Current Location : " + location + " Dest: " + destination;
     }
 
     

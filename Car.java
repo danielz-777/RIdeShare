@@ -8,6 +8,7 @@ public class Car
     private int destination;
     private static int rev;
     
+    
     //private boolean isLeft;
 
     public Car(int myLocation, int myDestination)
@@ -24,30 +25,45 @@ public class Car
         
     }
 
+    //adding Passengers method
     public void addPassenger(Station s, int i)
     {
         
         if(destination > location)
         {
-            if(s.getPass(i).getDestination() < destination && s.getPass(i).getDestination() > location && maxPass < 4)
+            if(s.getPass().size() > 0)
             {
-                s.removePass(i);
-                pass.add(s.getPass(i));
-                //System.out.println(pass);
+                if(s.getPass(i).getDestination() < destination && s.getPass(i).getDestination() > location && pass.size() <= maxPass)
+                {
+                    
+                    pass.add(s.removePass(i));
+                    //System.out.println(pass);
+                }
             }
+            
         }
         if(location > destination)
         {
-            if(s.getPass(i).getDestination() > destination && s.getPass(i).getDestination() < location && maxPass < 4)
+            if(s.getPass().size() > 0)
             {
-                s.removePass(i);
-                pass.add(s.getPass(i));
-                //System.out.println(pass);
+                if(s.getPass(i).getDestination() > destination && s.getPass(i).getDestination() < location && pass.size() <= maxPass)
+                {
+                    
+                    pass.add(s.removePass(i));
+                    //System.out.println(pass);
+                }
             }
+            
         }
         
         
         
+    }
+
+    //rev variable is to get miles of function, the standard rev is $5 per mile
+    public int getMiles()
+    {
+        return rev;
     }
 
     public int getPassSize()
@@ -93,12 +109,10 @@ public class Car
     {
         for(int i = 0; i < pass.size(); i++)
         {
-            if(location == pass.get(i).getDestination())
-            {
-                return pass.remove(i);
-                
-                
-            }
+                if(location == pass.get(i).getDestination())
+                {
+                    return pass.remove(i);
+                }
         }
         return null;
         

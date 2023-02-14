@@ -39,6 +39,7 @@ public class Road
         
     }
 
+    //move the car, add and drop off passengers
     public void moveCar()
     {
         for(int i = 0; i < 10; i++ )
@@ -46,20 +47,23 @@ public class Road
             
             for(int j = 0; j < stops[allCars[i].getLocation()].getPass().size(); j++ )
             {
-                System.out.println(stops[allCars[i].getLocation()]);
-                System.out.println(stops[allCars[i].getLocation()].getPass());
+                
+                //System.out.println(stops[allCars[i].getLocation()]);
+                //System.out.println(stops[allCars[i].getLocation()].getPass());
                 allCars[i].addPassenger(stops[allCars[i].getLocation()], j);
-                System.out.println(allCars[i].getPassSize());
+                //System.out.println(allCars[i].getPassSize());
             }
             //allCars[i].addPassenger(stops[allCars[i].getLocation()], i);
             
-
+            
             //method to add passenger into station, ignore null
             for(int k = 0; k <= allCars[i].getPassSize(); k++ )
             {
-                if(allCars[i].dropOff() != null)
+                Passenger p = allCars[i].dropOff();
+                if(p != null)
                 {
-                    stops[allCars[i].getLocation()].addPass(allCars[i].dropOff());
+                    stops[allCars[i].getLocation()].addPass(p);
+                    p.updateLoc(allCars[i].getLocation());
                 }
             }
             allCars[i].move();
@@ -84,6 +88,11 @@ public class Road
             System.out.println(numPassengers[i].toString());
             System.out.println("");
         }
+    }
+
+    public int getMi()
+    {
+        return allCars[0].getMiles();
     }
 
     public void getStops()
